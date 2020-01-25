@@ -28,7 +28,7 @@ static void merge_sort(size_t a, size_t b, std::vector<GrainOfSand>& grains) {
 
   size_t mid = (a+b)/2;
   merge_sort(a, mid, grains);
-  merge_sort(mid+1, b, grains);
+  merge_sort(mid+1, b, grains); 
 
   // todo napisanie merge_sorta w miejscu
 }
