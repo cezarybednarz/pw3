@@ -24,20 +24,11 @@ class LonesomeAdventure : public Adventure {
  public:
   LonesomeAdventure() {}
 
-  virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag& bag) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
-  }
+  virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag& bag);
 
-  virtual void arrangeSand(std::vector<GrainOfSand>& grains) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
-  }
+  virtual void arrangeSand(std::vector<GrainOfSand>& grains);
 
-  virtual Crystal selectBestCrystal(std::vector<Crystal>& crystals) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
-  }
+  virtual Crystal selectBestCrystal(std::vector<Crystal>& crystals);
 };
 
 class TeamAdventure : public Adventure {
