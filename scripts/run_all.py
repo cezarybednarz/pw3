@@ -201,9 +201,9 @@ def summarize():
     if not CHECKS["formatting"]:
         print "Bad formatting, code quality -= 1"
         code = code - 1
-#    if not CHECKS["clang-tidy"]:
-#        print "clang-tidy discovered problems, code quality -= 1"
-#        code = code - 1
+    if not CHECKS["clang-tidy"]:
+        print "clang-tidy discovered problems, code quality -= 1"
+        code = code - 1
     if performance + correctness < 4:
         print "Too few correctness/performance points to consider code quality"
         code = 0
@@ -246,8 +246,8 @@ CHECKS["formatting"] = expect_no_output("./scripts/format.sh",
                                         "Code not properly formatted:")
 
 print "== Running clang-tidy commented out"
-#CHECKS["clang-tidy"] = expect_no_output("./scripts/tidy.sh",
-#                                        "clang-tidy reported problems:")
+CHECKS["clang-tidy"] = expect_no_output("./scripts/tidy.sh",
+                                        "clang-tidy reported problems:")
 
 
 print "========="
