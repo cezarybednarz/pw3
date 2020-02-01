@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="turnstiles"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\tests\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crystalSelectionTest">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/crystalSelectionTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 crystalSelectionTest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crystalSelectionTest/fast">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/crystalSelectionTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 crystalSelectionTest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bottomlessBagTest">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/bottomlessBagTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 bottomlessBagTest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bottomlessBagTest/fast">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/bottomlessBagTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 bottomlessBagTest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sandArrangementTest">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/sandArrangementTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 sandArrangementTest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sandArrangementTest/fast">
+				<Option output="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/sandArrangementTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/cezary/CLionProjects/pw3/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 sandArrangementTest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/cezary/CLionProjects/pw3/cmake-build-debug/src/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/cezary/CLionProjects/pw3/src/tests/bottomlessBagTest.cpp">
+			<Option target="bottomlessBagTest"/>
+		</Unit>
+		<Unit filename="/home/cezary/CLionProjects/pw3/src/tests/crystalSelectionTest.cpp">
+			<Option target="crystalSelectionTest"/>
+		</Unit>
+		<Unit filename="/home/cezary/CLionProjects/pw3/src/tests/sandArrangementTest.cpp">
+			<Option target="sandArrangementTest"/>
+		</Unit>
+		<Unit filename="/home/cezary/CLionProjects/pw3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/cezary/CLionProjects/pw3/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/home/cezary/CLionProjects/pw3/src/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

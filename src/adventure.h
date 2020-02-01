@@ -6,8 +6,8 @@
 
 #include "../third_party/threadpool/threadpool.h"
 
-#include "./types.h"
-#include "./utils.h"
+#include "types.h"
+#include "utils.h"
 
 class Adventure {
  public:
@@ -24,11 +24,61 @@ class LonesomeAdventure : public Adventure {
  public:
   LonesomeAdventure() {}
 
-  virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag& bag);
+  virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag& bag) {
+    int N = bag.getCapacity();
+    const uint64_t NO_ELEM = UINT64_MAX;
 
-  virtual void arrangeSand(std::vector<GrainOfSand>& grains);
+    std::vector<uint64_t> DP(N + 1, NO_ELEM);
+    std::vector<std::pair<uint64_t, uint64_t >> retrieve(N + 1, std::make_pair(0, 0));
+    DP[0] = 0;
 
-  virtual Crystal selectBestCrystal(std::vector<Crystal>& crystals);
+    for(auto &egg : eggs) {
+        auto size = egg.getSize();
+        auto weight = egg.getWeight();
+        for(int i = N; i >= 0; --i) {
+            if(DP[i - size] != NO_ELEM) {
+                if (DP[i - size] + weight > DP[i]) {
+                    DP[i] = DP[i - size] + weight;
+                    retrieve[i] = {size, weight};
+                  }
+              }
+          }
+      }
+
+    for(int i = N; i >= 0; --i) {
+        if(DP[i] != NO_ELEM) {
+            int curr = i;
+            while(curr > 0) {
+                bag.addEgg(Egg(retrieve[curr].first, retrieve[curr].second));
+                curr -= retrieve[i].first;
+              }
+            return DP[i];
+          }
+      }
+
+    return -1; // error
+  }
+
+ private:
+  static void merge_sort(std::vector<GrainOfSand>::iterator first, std::vector<GrainOfSand>::iterator last) {
+    if (last - first <= 1) {
+        return;
+      }
+    auto middle = first + (last - first) / 2;
+    merge_sort(first, middle);
+    merge_sort(middle, last);
+    std::inplace_merge(first, middle, last);
+  }
+ public:
+
+  virtual void arrangeSand(std::vector<GrainOfSand>& grains) {
+    auto first = grains.begin(), last = grains.end();
+    merge_sort(first, last);
+  }
+
+  virtual Crystal selectBestCrystal(std::vector<Crystal>& crystals) {
+    return *std::max_element(crystals.begin(), crystals.end());
+  }
 };
 
 class TeamAdventure : public Adventure {
@@ -38,19 +88,18 @@ class TeamAdventure : public Adventure {
         councilOfShamans(numberOfShamansArg) {}
 
   uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag& bag) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
-    (void) numberOfShamans;
+    LonesomeAdventure adventure;
+    return adventure.packEggs(eggs, bag);
   }
 
   virtual void arrangeSand(std::vector<GrainOfSand>& grains) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
+    LonesomeAdventure adventure;
+    adventure.arrangeSand(grains);
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal>& crystals) {
-    // TODO Implement this method
-    throw std::runtime_error("Not implemented");
+    LonesomeAdventure adventure;
+    return adventure.selectBestCrystal (crystals);
   }
 
  private:
