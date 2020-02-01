@@ -1,5 +1,6 @@
 #include "adventure.h"
 
+
 uint64_t LonesomeAdventure::packEggs(std::vector<Egg> eggs, BottomlessBag& bag) {
   // todo dopisac odzyskiwanie wyniku
   int N = bag.getCapacity();
@@ -22,20 +23,19 @@ uint64_t LonesomeAdventure::packEggs(std::vector<Egg> eggs, BottomlessBag& bag) 
   return ret;
 }
 
-static void merge_sort(size_t a, size_t b, std::vector<GrainOfSand>& grains) {
-  if(a >= b)
-    return;
-
-  size_t mid = (a+b)/2;
-  merge_sort(a, mid, grains);
-  merge_sort(mid+1, b, grains); 
-
-  // todo napisanie merge_sorta w miejscu
+static void merge_sort(std::vector<GrainOfSand>::iterator first, std::vector<GrainOfSand>::iterator last) {
+	if (last - first <= 1) {
+		return;
+	}
+	auto middle = first + (last - first) / 2;
+	merge_sort(first, middle);
+	merge_sort(middle, last);
+	std::inplace_merge(first, middle, last);
 }
 
 void LonesomeAdventure::arrangeSand(std::vector<GrainOfSand>& grains) {
-  size_t N = grains.size();
-  merge_sort(0, N-1, grains);
+  auto first = grains.begin(), last = grains.end();
+  merge_sort(first, last);
 }
 
 Crystal LonesomeAdventure::selectBestCrystal(std::vector<Crystal>& crystals) {
