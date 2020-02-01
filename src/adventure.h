@@ -84,6 +84,12 @@ class LonesomeAdventure : public Adventure {
   }
 };
 
+
+
+
+
+
+
 class TeamAdventure : public Adventure {
  public:
   explicit TeamAdventure(uint64_t numberOfShamansArg)
@@ -101,7 +107,38 @@ class TeamAdventure : public Adventure {
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal> &crystals) {
-    
+    Crystal result;
+    std::vector<std::future<Crystal>> results;
+
+    size_t interval = crystals.size() / numberOfShamans + 1;
+    size_t counter = 0;
+    auto curr_first = crystals.begin(), curr_last = crystals.begin();
+
+    for(;;) {
+
+      if(curr_last == crystals.end() || counter == interval) {
+        results.emplace_back(councilOfShamans.enqueue([curr_first, curr_last] {
+          return *std::max_element(curr_first, curr_last);
+        }));
+
+        curr_first = curr_last;
+        counter = 0;
+
+        if(curr_last == crystals.end()) {
+          break;
+        }
+      }
+
+
+      curr_last++;
+      counter++;
+    }
+
+    for(auto&& r: results) {
+      result = std::max(r.get(), result);
+    }
+
+    return result;
   }
 
  private:
