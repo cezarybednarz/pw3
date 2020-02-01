@@ -1,17 +1,17 @@
 [
 {
   "directory": "/home/cezary/CLionProjects/pw3/src/tests",
-  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -g -O0 -fstack-protector-all -D_GLIBXX_DEBUG -D_GLIBXX_DEBUG_PEDANTIC   -std=gnu++11 -o CMakeFiles/crystalSelectionTest.dir/crystalSelectionTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/crystalSelectionTest.cpp",
+  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -O2 -DNDEBUG -Wuninitialized   -std=gnu++11 -o CMakeFiles/crystalSelectionTest.dir/crystalSelectionTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/crystalSelectionTest.cpp",
   "file": "/home/cezary/CLionProjects/pw3/src/tests/crystalSelectionTest.cpp"
 },
 {
   "directory": "/home/cezary/CLionProjects/pw3/src/tests",
-  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -g -O0 -fstack-protector-all -D_GLIBXX_DEBUG -D_GLIBXX_DEBUG_PEDANTIC   -std=gnu++11 -o CMakeFiles/bottomlessBagTest.dir/bottomlessBagTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/bottomlessBagTest.cpp",
+  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -O2 -DNDEBUG -Wuninitialized   -std=gnu++11 -o CMakeFiles/bottomlessBagTest.dir/bottomlessBagTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/bottomlessBagTest.cpp",
   "file": "/home/cezary/CLionProjects/pw3/src/tests/bottomlessBagTest.cpp"
 },
 {
   "directory": "/home/cezary/CLionProjects/pw3/src/tests",
-  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -g -O0 -fstack-protector-all -D_GLIBXX_DEBUG -D_GLIBXX_DEBUG_PEDANTIC   -std=gnu++11 -o CMakeFiles/sandArrangementTest.dir/sandArrangementTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/sandArrangementTest.cpp",
+  "command": "/usr/bin/c++   -I/home/cezary/CLionProjects/pw3/src    -Wall -Wunused-function -Wwrite-strings -Wformat -Wformat-security -Wparentheses -Wsequence-point -Wno-system-headers -Werror -Winit-self  -O2 -DNDEBUG -Wuninitialized   -std=gnu++11 -o CMakeFiles/sandArrangementTest.dir/sandArrangementTest.cpp.o -c /home/cezary/CLionProjects/pw3/src/tests/sandArrangementTest.cpp",
   "file": "/home/cezary/CLionProjects/pw3/src/tests/sandArrangementTest.cpp"
 }
 ]

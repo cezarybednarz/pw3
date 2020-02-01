@@ -10,7 +10,7 @@
 #include "utils.h"
 
 class Adventure {
-public:
+ public:
   virtual ~Adventure() = default;
 
   virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) = 0;
@@ -21,7 +21,7 @@ public:
 };
 
 class LonesomeAdventure : public Adventure {
-public:
+ public:
   LonesomeAdventure() {}
 
   virtual uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) {
@@ -34,10 +34,10 @@ public:
     possible[0] = true;
 
     for (auto &egg : eggs) {
-      auto size = egg.getSize();
+      int size = egg.getSize();
       auto weight = egg.getWeight();
       for (int i = N; i >= 0; --i) {
-        if (i >= (int)size && possible[i - size]) {
+        if (i >= size && possible[i - size]) {
           if (DP[i - size] + weight > DP[i]) {
             DP[i] = DP[i - size] + weight;
             retrieve[i] = {size, weight};
@@ -61,7 +61,7 @@ public:
     return 0;
   }
 
-private:
+ private:
   static void merge_sort(std::vector<GrainOfSand>::iterator first,
                          std::vector<GrainOfSand>::iterator last) {
     if (last - first <= 1) {
@@ -73,7 +73,7 @@ private:
     std::inplace_merge(first, middle, last);
   }
 
-public:
+ public:
   virtual void arrangeSand(std::vector<GrainOfSand> &grains) {
     auto first = grains.begin(), last = grains.end();
     merge_sort(first, last);
@@ -85,7 +85,7 @@ public:
 };
 
 class TeamAdventure : public Adventure {
-public:
+ public:
   explicit TeamAdventure(uint64_t numberOfShamansArg)
       : numberOfShamans(numberOfShamansArg),
         councilOfShamans(numberOfShamansArg) {}
@@ -101,13 +101,12 @@ public:
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal> &crystals) {
-    LonesomeAdventure adventure;
-    return adventure.selectBestCrystal(crystals);
+    
   }
 
-private:
+ private:
   uint64_t numberOfShamans;
   ThreadPool councilOfShamans;
 };
 
-#endif // SRC_ADVENTURE_H_
+#endif  // SRC_ADVENTURE_H_
