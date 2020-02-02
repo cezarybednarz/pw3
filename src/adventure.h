@@ -108,6 +108,8 @@ class TeamAdventure : public Adventure {
 
   // todo moze wiecej burdena, bez oszukiwania z zapamietywaniem
   uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) {
+    const uint64_t threshold = 20;
+
     uint64_t N = bag.getCapacity();
     uint64_t M = eggs.size();
 
@@ -122,10 +124,8 @@ class TeamAdventure : public Adventure {
       uint64_t size = eggs[i - 1].getSize();
       uint64_t weight = eggs[i - 1].getWeight();
 
-      size_t interval = (N - size) / numberOfShamans + 1;
-      if(N < size) {
-        interval = N / numberOfShamans + 1;
-      }
+      uint64_t interval = std::max(N / numberOfShamans + 1, threshold);
+
 
       std::vector<std::future<void>> results;
       for(size_t first = 0; first <= N; first += interval) {
@@ -167,15 +167,11 @@ class TeamAdventure : public Adventure {
   }
 
 
-
-
-
  private:
-  void quick_sort(std::vector<GrainOfSand>::iterator first,
+   std::shared_future<void> quick_sort(std::vector<GrainOfSand>::iterator first,
                   std::vector<GrainOfSand>::iterator last) {
-    if (last - first <= 1) {
-      return;
-    }
+
+    std::cerr << last - first << "\n";
     std::vector<GrainOfSand>::iterator mid = first + (last - first) / 2;
     std::nth_element(first, mid, last);
     auto r = last - 1;
@@ -187,14 +183,19 @@ class TeamAdventure : public Adventure {
         std::iter_swap(it, r);
       }
     }
-    std::future<void> f1 = councilOfShamans.enqueue([&] {quick_sort(first, mid);});
-    quick_sort(mid, last);
-    f1.get();
+    return councilOfShamans.enqueue([mid, last, first, this] {
+      if(first + 1 < mid) {
+        quick_sort(first, mid).get();
+      }
+      if(mid + 1 < last) {
+        quick_sort(mid, last).get();
+      }
+    }).share();
   }
 
   virtual void arrangeSand(std::vector<GrainOfSand> &grains) {
     auto first = grains.begin(), last = grains.end();
-    quick_sort(first, last);
+    quick_sort(first, last).get();
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal> &crystals) {
