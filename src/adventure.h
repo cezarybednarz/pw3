@@ -92,7 +92,6 @@ class LonesomeAdventure : public Adventure {
   }
 };
 
-
 class TeamAdventure : public Adventure {
  public:
   explicit TeamAdventure(uint64_t numberOfShamansArg)
@@ -110,7 +109,7 @@ class TeamAdventure : public Adventure {
     std::vector<std::vector<bool>> possible(M + 1,
                                             std::vector<bool>(N + 1, false));
     std::vector<std::pair<uint64_t, uint64_t>> retrieve(N + 1,
-        std::make_pair(0, 0));
+                                                        std::make_pair(0, 0));
 
     possible[0][0] = true;
 
@@ -120,29 +119,29 @@ class TeamAdventure : public Adventure {
 
       uint64_t interval = std::max(N / numberOfShamans + 1, threshold);
 
-
       std::vector<std::future<void>> results;
       for (size_t first = 0; first <= N; first += interval) {
         results.emplace_back(councilOfShamans.enqueue(
             [first, &DP, N, size, weight, &possible, &retrieve, interval, i] {
-          for (size_t j = first; j <= std::min(N, first + interval - 1); j++) {
-            if (possible[i - 1][j]) {
-              DP[i][j] = DP[i - 1][j];
-              possible[i][j] = true;
-            }
+              for (size_t j = first; j <= std::min(N, first + interval - 1);
+                   j++) {
+                if (possible[i - 1][j]) {
+                  DP[i][j] = DP[i - 1][j];
+                  possible[i][j] = true;
+                }
 
-            if (j >= size && possible[i - 1][j - size]) {
-              possible[i][j] = true;
-              if (DP[i][j] < DP[i - 1][j - size] + weight) {
-                DP[i][j] = DP[i - 1][j - size] + weight;
-                retrieve[j] = {size, weight};
+                if (j >= size && possible[i - 1][j - size]) {
+                  possible[i][j] = true;
+                  if (DP[i][j] < DP[i - 1][j - size] + weight) {
+                    DP[i][j] = DP[i - 1][j - size] + weight;
+                    retrieve[j] = {size, weight};
+                  }
+                }
               }
-            }
-          }
-        }));
+            }));
       }
 
-      for (auto&& result : results) {
+      for (auto &&result : results) {
         result.get();
       }
     }
@@ -161,11 +160,10 @@ class TeamAdventure : public Adventure {
     return 0;
   }
 
-
  public:
   void quick_sort(std::vector<GrainOfSand>::iterator first,
-       std::vector<GrainOfSand>::iterator last, int threshold) {
-     if (last - first <= threshold) {
+                  std::vector<GrainOfSand>::iterator last, int threshold) {
+    if (last - first <= threshold) {
       std::sort(first, last);
       return;
     }
@@ -181,9 +179,8 @@ class TeamAdventure : public Adventure {
         std::iter_swap(it, r);
       }
     }
-    auto f = councilOfShamans.enqueue([first, mid, threshold, this] {
-     quick_sort(first, mid, threshold);
-    });
+    auto f = councilOfShamans.enqueue(
+        [first, mid, threshold, this] { quick_sort(first, mid, threshold); });
     quick_sort(mid, last, threshold);
     f.get();
   }
@@ -219,7 +216,7 @@ class TeamAdventure : public Adventure {
       counter++;
     }
 
-    for (auto&& r : results) {
+    for (auto &&r : results) {
       result = std::max(r.get(), result);
     }
 
