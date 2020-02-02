@@ -1,0 +1,12 @@
+/home/cezary/CLionProjects/pw3/CMakeFiles/rebuild_cache.dir
+/home/cezary/CLionProjects/pw3/CMakeFiles/test.dir
+/home/cezary/CLionProjects/pw3/CMakeFiles/edit_cache.dir
+/home/cezary/CLionProjects/pw3/src/CMakeFiles/rebuild_cache.dir
+/home/cezary/CLionProjects/pw3/src/CMakeFiles/test.dir
+/home/cezary/CLionProjects/pw3/src/CMakeFiles/edit_cache.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/edit_cache.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/test.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/crystalSelectionTest.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/rebuild_cache.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/bottomlessBagTest.dir
+/home/cezary/CLionProjects/pw3/src/tests/CMakeFiles/sandArrangementTest.dir

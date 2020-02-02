@@ -108,8 +108,8 @@ class TeamAdventure : public Adventure {
 
   // todo moze wiecej burdena, bez oszukiwania z zapamietywaniem
   uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) {
-    int N = bag.getCapacity();
-    int M = eggs.size();
+    uint64_t N = bag.getCapacity();
+    uint64_t M = eggs.size();
 
     std::vector<std::vector<uint64_t>> DP(M + 1, std::vector<uint64_t>(N + 1, 0));
     std::vector<std::vector<bool>> possible(M + 1, std::vector<bool>(N + 1, false));
@@ -123,20 +123,20 @@ class TeamAdventure : public Adventure {
       uint64_t weight = eggs[i - 1].getWeight();
 
       size_t interval = (N - size) / numberOfShamans + 1;
+      if(N < size) {
+        interval = N / numberOfShamans + 1;
+      }
 
       std::vector<std::future<void>> results;
-
-      for(size_t first = std::max(size, 1); first <= N; first += interval) {
-        size_t last = first + interval;
-        results.emplace_back(councilOfShamans.enqueue([first, interval, i] {
-          for(size_t j = std::min(N, first + interval - 1); j >= first; --j) {
-
+      for(size_t first = 0; first <= N; first += interval) {
+        results.emplace_back(councilOfShamans.enqueue([first, &DP, N, size, weight, &possible, &retrieve, interval, i] {
+          for(size_t j = first; j <= std::min(N, first + interval - 1); j++) {
             if(possible[i - 1][j]) {
               DP[i][j] = DP[i - 1][j];
               possible[i][j] = true;
             }
 
-            if(possible[i - 1][j - size]) {
+            if(j >= size && possible[i - 1][j - size]) {
               possible[i][j] = true;
               if(DP[i][j] < DP[i - 1][j - size] + weight) {
                 DP[i][j] = DP[i - 1][j - size] + weight;
@@ -147,7 +147,7 @@ class TeamAdventure : public Adventure {
         }));
       }
 
-      for(auto result& : results) {
+      for(auto&& result : results) {
         result.get();
       }
     }
