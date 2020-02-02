@@ -63,16 +63,15 @@ class LonesomeAdventure : public Adventure {
 
   static void quick_sort(std::vector<GrainOfSand>::iterator first,
                          std::vector<GrainOfSand>::iterator last) {
-    
     if (last - first <= 1) {
       return;
     }
     std::vector<GrainOfSand>::iterator mid = first + (last - first) / 2;
     std::nth_element(first, mid, last);
     auto r = last - 1;
-    for(auto it = first; it < mid; it++) {
-      if(*mid < *it) {
-        while(r > mid && *mid < *r) {
+    for (auto it = first; it < mid; it++) {
+      if (*mid < *it) {
+        while (r > mid && *mid < *r) {
           r--;
         }
         std::iter_swap(it, r);
@@ -106,14 +105,16 @@ class TeamAdventure : public Adventure {
     uint64_t N = bag.getCapacity();
     uint64_t M = eggs.size();
 
-    std::vector<std::vector<uint64_t>> DP(M + 1, std::vector<uint64_t>(N + 1, 0));
-    std::vector<std::vector<bool>> possible(M + 1, std::vector<bool>(N + 1, false));
+    std::vector<std::vector<uint64_t>> DP(M + 1,
+                                          std::vector<uint64_t>(N + 1, 0));
+    std::vector<std::vector<bool>> possible(M + 1,
+                                            std::vector<bool>(N + 1, false));
     std::vector<std::pair<uint64_t, uint64_t>> retrieve(N + 1,
         std::make_pair(0, 0));
 
     possible[0][0] = true;
 
-    for(size_t i = 1; i <= M; i++) {
+    for (size_t i = 1; i <= M; i++) {
       uint64_t size = eggs[i - 1].getSize();
       uint64_t weight = eggs[i - 1].getWeight();
 
@@ -121,17 +122,18 @@ class TeamAdventure : public Adventure {
 
 
       std::vector<std::future<void>> results;
-      for(size_t first = 0; first <= N; first += interval) {
-        results.emplace_back(councilOfShamans.enqueue([first, &DP, N, size, weight, &possible, &retrieve, interval, i] {
-          for(size_t j = first; j <= std::min(N, first + interval - 1); j++) {
-            if(possible[i - 1][j]) {
+      for (size_t first = 0; first <= N; first += interval) {
+        results.emplace_back(councilOfShamans.enqueue(
+            [first, &DP, N, size, weight, &possible, &retrieve, interval, i] {
+          for (size_t j = first; j <= std::min(N, first + interval - 1); j++) {
+            if (possible[i - 1][j]) {
               DP[i][j] = DP[i - 1][j];
               possible[i][j] = true;
             }
 
-            if(j >= size && possible[i - 1][j - size]) {
+            if (j >= size && possible[i - 1][j - size]) {
               possible[i][j] = true;
-              if(DP[i][j] < DP[i - 1][j - size] + weight) {
+              if (DP[i][j] < DP[i - 1][j - size] + weight) {
                 DP[i][j] = DP[i - 1][j - size] + weight;
                 retrieve[j] = {size, weight};
               }
@@ -140,7 +142,7 @@ class TeamAdventure : public Adventure {
         }));
       }
 
-      for(auto&& result : results) {
+      for (auto&& result : results) {
         result.get();
       }
     }
@@ -161,10 +163,9 @@ class TeamAdventure : public Adventure {
 
 
  public:
-   void quick_sort(std::vector<GrainOfSand>::iterator first,
+  void quick_sort(std::vector<GrainOfSand>::iterator first,
        std::vector<GrainOfSand>::iterator last, int threshold) {
-
-     if(last - first <= threshold) {
+     if (last - first <= threshold) {
       std::sort(first, last);
       return;
     }
@@ -172,15 +173,15 @@ class TeamAdventure : public Adventure {
     std::vector<GrainOfSand>::iterator mid = first + (last - first) / 2;
     std::nth_element(first, mid, last);
     auto r = last - 1;
-    for(auto it = first; it < mid; it++) {
-      if(*mid < *it) {
-        while(r > mid && *mid < *r) {
+    for (auto it = first; it < mid; it++) {
+      if (*mid < *it) {
+        while (r > mid && *mid < *r) {
           r--;
         }
         std::iter_swap(it, r);
       }
     }
-    auto f = councilOfShamans.enqueue([first, mid, last, threshold, this] {
+    auto f = councilOfShamans.enqueue([first, mid, threshold, this] {
      quick_sort(first, mid, threshold);
     });
     quick_sort(mid, last, threshold);
@@ -200,9 +201,8 @@ class TeamAdventure : public Adventure {
     size_t counter = 0;
     auto curr_first = crystals.begin(), curr_last = crystals.begin();
 
-    for(;;) {
-
-      if(curr_last == crystals.end() || counter == interval) {
+    for (;;) {
+      if (curr_last == crystals.end() || counter == interval) {
         results.emplace_back(councilOfShamans.enqueue([curr_first, curr_last] {
           return *std::max_element(curr_first, curr_last);
         }));
@@ -210,7 +210,7 @@ class TeamAdventure : public Adventure {
         curr_first = curr_last;
         counter = 0;
 
-        if(curr_last == crystals.end()) {
+        if (curr_last == crystals.end()) {
           break;
         }
       }
@@ -219,7 +219,7 @@ class TeamAdventure : public Adventure {
       counter++;
     }
 
-    for(auto&& r: results) {
+    for (auto&& r : results) {
       result = std::max(r.get(), result);
     }
 
