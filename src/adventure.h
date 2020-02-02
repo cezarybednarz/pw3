@@ -61,8 +61,7 @@ class LonesomeAdventure : public Adventure {
     return 0;
   }
 
- private:
-  void quick_sort(std::vector<GrainOfSand>::iterator first,
+  static void quick_sort(std::vector<GrainOfSand>::iterator first,
                          std::vector<GrainOfSand>::iterator last) {
     
     if (last - first <= 1) {
@@ -95,18 +94,12 @@ class LonesomeAdventure : public Adventure {
 };
 
 
-
-
-
-
-
 class TeamAdventure : public Adventure {
  public:
   explicit TeamAdventure(uint64_t numberOfShamansArg)
       : numberOfShamans(numberOfShamansArg),
         councilOfShamans(numberOfShamansArg) {}
 
-  // todo moze wiecej burdena, bez oszukiwania z zapamietywaniem
   uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) {
     const uint64_t threshold = 20;
 
@@ -167,11 +160,15 @@ class TeamAdventure : public Adventure {
   }
 
 
- private:
-   std::shared_future<void> quick_sort(std::vector<GrainOfSand>::iterator first,
-                  std::vector<GrainOfSand>::iterator last) {
+ public:
+   void quick_sort(std::vector<GrainOfSand>::iterator first,
+       std::vector<GrainOfSand>::iterator last, int threshold) {
 
-    std::cerr << last - first << "\n";
+     if(last - first <= threshold) {
+      std::sort(first, last);
+      return;
+    }
+
     std::vector<GrainOfSand>::iterator mid = first + (last - first) / 2;
     std::nth_element(first, mid, last);
     auto r = last - 1;
@@ -183,19 +180,16 @@ class TeamAdventure : public Adventure {
         std::iter_swap(it, r);
       }
     }
-    return councilOfShamans.enqueue([mid, last, first, this] {
-      if(first + 1 < mid) {
-        quick_sort(first, mid).get();
-      }
-      if(mid + 1 < last) {
-        quick_sort(mid, last).get();
-      }
-    }).share();
+    auto f = councilOfShamans.enqueue([first, mid, last, threshold, this] {
+     quick_sort(first, mid, threshold);
+    });
+    quick_sort(mid, last, threshold);
+    f.get();
   }
 
   virtual void arrangeSand(std::vector<GrainOfSand> &grains) {
     auto first = grains.begin(), last = grains.end();
-    quick_sort(first, last).get();
+    quick_sort(first, last, (last - first) / numberOfShamans + 1);
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal> &crystals) {
