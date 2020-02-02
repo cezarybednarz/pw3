@@ -64,6 +64,7 @@ class LonesomeAdventure : public Adventure {
  private:
   void quick_sort(std::vector<GrainOfSand>::iterator first,
                          std::vector<GrainOfSand>::iterator last) {
+    
     if (last - first <= 1) {
       return;
     }
@@ -105,10 +106,69 @@ class TeamAdventure : public Adventure {
       : numberOfShamans(numberOfShamansArg),
         councilOfShamans(numberOfShamansArg) {}
 
+  // todo moze wiecej burdena, bez oszukiwania z zapamietywaniem
   uint64_t packEggs(std::vector<Egg> eggs, BottomlessBag &bag) {
-    LonesomeAdventure adventure;
-    return adventure.packEggs(eggs, bag);
+    int N = bag.getCapacity();
+    int M = eggs.size();
+
+    std::vector<std::vector<uint64_t>> DP(M + 1, std::vector<uint64_t>(N + 1, 0));
+    std::vector<std::vector<bool>> possible(M + 1, std::vector<bool>(N + 1, false));
+    std::vector<std::pair<uint64_t, uint64_t>> retrieve(N + 1,
+        std::make_pair(0, 0));
+
+    possible[0][0] = true;
+
+    for(size_t i = 1; i <= M; i++) {
+      uint64_t size = eggs[i - 1].getSize();
+      uint64_t weight = eggs[i - 1].getWeight();
+
+      size_t interval = (N - size) / numberOfShamans + 1;
+
+      std::vector<std::future<void>> results;
+
+      for(size_t first = std::max(size, 1); first <= N; first += interval) {
+        size_t last = first + interval;
+        results.emplace_back(councilOfShamans.enqueue([first, interval, i] {
+          for(size_t j = std::min(N, first + interval - 1); j >= first; --j) {
+
+            if(possible[i - 1][j]) {
+              DP[i][j] = DP[i - 1][j];
+              possible[i][j] = true;
+            }
+
+            if(possible[i - 1][j - size]) {
+              possible[i][j] = true;
+              if(DP[i][j] < DP[i - 1][j - size] + weight) {
+                DP[i][j] = DP[i - 1][j - size] + weight;
+                retrieve[j] = {size, weight};
+              }
+            }
+          }
+        }));
+      }
+
+      for(auto result& : results) {
+        result.get();
+      }
+    }
+
+    for (int i = N; i >= 0; --i) {
+      if (possible[M][i]) {
+        int curr = i;
+        while (curr > 0) {
+          bag.addEgg(Egg(retrieve[curr].first, retrieve[curr].second));
+          curr -= retrieve[i].first;
+        }
+        return DP[M][i];
+      }
+    }
+
+    return 0;
   }
+
+
+
+
 
  private:
   void quick_sort(std::vector<GrainOfSand>::iterator first,
@@ -127,10 +187,9 @@ class TeamAdventure : public Adventure {
         std::iter_swap(it, r);
       }
     }
-    std::future<void> f1 = councilOfShamans.enqueue([first, mid, this] {quick_sort(first, mid);});
-    std::future<void> f2 = councilOfShamans.enqueue([mid, last, this] {quick_sort(mid, last);});
+    std::future<void> f1 = councilOfShamans.enqueue([&] {quick_sort(first, mid);});
+    quick_sort(mid, last);
     f1.get();
-    f2.get();
   }
 
   virtual void arrangeSand(std::vector<GrainOfSand> &grains) {
