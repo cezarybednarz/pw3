@@ -62,21 +62,31 @@ class LonesomeAdventure : public Adventure {
   }
 
  private:
-  static void merge_sort(std::vector<GrainOfSand>::iterator first,
+  static void quick_sort(std::vector<GrainOfSand>::iterator first,
                          std::vector<GrainOfSand>::iterator last) {
     if (last - first <= 1) {
       return;
     }
-    auto middle = first + (last - first) / 2;
-    merge_sort(first, middle);
-    merge_sort(middle, last);
-    std::inplace_merge(first, middle, last);
+    std::vector<GrainOfSand>::iterator mid = first + (last - first) / 2;
+    std::nth_element(first, mid, last);
+    auto r = last;
+    r--;
+    for(auto it = first; it < mid; it++) {
+      if(*mid < *it) {
+        while(r > mid && *mid < *r) {
+          r--;
+        }
+        std::iter_swap(it, r);
+      }
+    }
+    quick_sort(first, mid);
+    quick_sort(mid, last);
   }
 
  public:
   virtual void arrangeSand(std::vector<GrainOfSand> &grains) {
     auto first = grains.begin(), last = grains.end();
-    merge_sort(first, last);
+    quick_sort(first, last);
   }
 
   virtual Crystal selectBestCrystal(std::vector<Crystal> &crystals) {
@@ -128,7 +138,6 @@ class TeamAdventure : public Adventure {
           break;
         }
       }
-
 
       curr_last++;
       counter++;
